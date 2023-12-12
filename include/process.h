@@ -1,7 +1,12 @@
 #ifndef PROC_H_   
 #define PROC_H_
 
-typedef struct _process process;
-process* create_process(int size);
+typedef struct _process {
+    int pid;
+    int time;
+    struct _process *next;
+} process;
+
+process* createProcess(int size);
 
 #endif
