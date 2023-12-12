@@ -3,12 +3,6 @@
 #include "queue.h"
 #include "process.h"
 
-typedef struct _queue {
-    int size;
-    process *start;
-    process *end;
-} queue;
-
 void initQueue(queue *processQueue) {
     processQueue->size = 0;
     processQueue->start = NULL;
