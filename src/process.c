@@ -1,5 +1,6 @@
 #include "process.h"
-#include "chance.c"
+#include "chance.h"
+#include <stdlib.h>
 
 typedef struct _process {
     int pid;
