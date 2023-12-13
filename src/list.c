@@ -36,6 +36,7 @@ process* removeFromList(list* list, int pid) {
         prev->next = aux->next;
     }
     list->size--;
+    return aux;
 }
 
 void freeList(list* list) {
