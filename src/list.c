@@ -12,7 +12,7 @@ void insertOnList(process *newProcess, list *l){
         l->begin = newProcess;
     }else{
         process *aux = l->begin;
-        while(aux->next != NULL){
+        while(aux->next != NULL && aux->next->time < newProcess->time){
             aux = aux->next;
         }
         aux->next = newProcess;
