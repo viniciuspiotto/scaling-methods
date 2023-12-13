@@ -1,22 +1,13 @@
 #include "list.h"
 #include "process.h"
-
 #include <stdlib.h>
 
-typedef struct _list {
-    process *begin;
-    int size;
-} list;
-
-list* initList() {
-    list* newList = (list*) malloc(sizeof(list));
+void initList(list* newList) {
     newList->begin = NULL;
     newList->size = 0;
-    return newList;
 }
 
-void insertOnList(list *l){
-    process* newProcess = createProcess(l->size);
+void insertOnList(process *newProcess, list *l){
     if(l->begin == NULL){
         l->begin = newProcess;
     }else{
@@ -29,10 +20,21 @@ void insertOnList(list *l){
     l->size++;
 }
 
-void removeFromList(list* list) {
+process* removeFromList(list* list, int pid) {
     process* aux = list->begin;
-    list->begin = aux->next;
-    free(aux);
+    process* prev = NULL;
+    while (aux != NULL && aux->pid != pid) {
+        prev = aux;
+        aux = aux->next;
+    }
+    if (aux == NULL) {
+        return NULL;
+    }
+    if (prev == NULL) {
+        list->begin = aux->next;
+    } else {
+        prev->next = aux->next;
+    }
     list->size--;
 }
 
