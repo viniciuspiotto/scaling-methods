@@ -1,6 +1,5 @@
 #ifndef LIST_H_  
 #define LIST_H_
-
 #include "process.h"
 
 typedef struct _list{
