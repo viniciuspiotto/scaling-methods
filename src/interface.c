@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 void failedChoice(){
-printf("*--------------------------------------*\n");
-printf("|            Opção inválida            |\n");
-printf("*--------------------------------------*\n\n\n");
+    printf("*--------------------------------------*\n");
+    printf("|            Opção inválida            |\n");
+    printf("*--------------------------------------*\n\n\n");
 }
 
 int choiceMethod(){
