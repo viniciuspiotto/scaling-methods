@@ -7,6 +7,6 @@ typedef struct _process {
     struct _process *next;
 } process;
 
-process* createProcess(int size);
+process* createProcess();
 
 #endif

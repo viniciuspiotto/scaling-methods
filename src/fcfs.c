@@ -7,7 +7,7 @@ void firstComeFirstServed() {
     initQueue(&processQueue);
     do {
         if(randomChance(0, 100) <= 30) {
-            process *newProcess = createProcess(processQueue.size);
+            process *newProcess = createProcess();
             enqueue(newProcess, &processQueue);
         }
         if(processQueue.size > 0) {

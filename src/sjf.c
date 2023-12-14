@@ -11,7 +11,7 @@ void shortestJobFirst(){
 
     do{
         if(randomChance(0,100) <= 30){
-            process *newProcess = createProcess(processList.size);
+            process *newProcess = createProcess();
             insertOnList(newProcess, &processList);
         }
 

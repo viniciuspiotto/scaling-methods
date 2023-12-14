@@ -12,7 +12,7 @@ void roundRobin(){
 
     while (1){
         if(randomChance(0, 100) <= 30) {
-            process *newProcess = createProcess(processList.size);
+            process *newProcess = createProcess();
             insertOnCircular(&processList, newProcess);
             processList.size++;
         }
