@@ -8,13 +8,15 @@ void initList(list* newList) {
 }
 
 void insertOnList(process *newProcess, list *l){
-    if(l->begin == NULL){
+    if(l->begin == NULL || l->begin->time >= newProcess->time){
+        newProcess->next = l->begin;
         l->begin = newProcess;
     }else{
         process *aux = l->begin;
         while(aux->next != NULL && aux->next->time < newProcess->time){
             aux = aux->next;
         }
+        newProcess->next = aux->next;
         aux->next = newProcess;
     }
     l->size++;
