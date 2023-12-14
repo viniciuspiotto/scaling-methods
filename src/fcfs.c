@@ -13,7 +13,7 @@ void firstComeFirstServed() {
         if(processQueue.size > 0) {
             processQueue.start->time--;
             if(processQueue.start->time == 0) {
-                dequeue(&processQueue);
+                process* removedProcess = dequeue(&processQueue);
             }
         }
     } while (1);
