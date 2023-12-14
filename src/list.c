@@ -8,15 +8,13 @@ void initList(list* newList) {
 }
 
 void insertOnList(process *newProcess, list *l){
-    if(l->begin == NULL || l->begin->time >= newProcess->time){
-        newProcess->next = l->begin;
+    if(l->begin == NULL){
         l->begin = newProcess;
     }else{
         process *aux = l->begin;
         while(aux->next != NULL && aux->next->time < newProcess->time){
             aux = aux->next;
         }
-        newProcess->next = aux->next;
         aux->next = newProcess;
     }
     l->size++;
@@ -49,4 +47,32 @@ void freeList(list* list) {
         aux = next;
     }
     free(list);
+}
+
+void initCircular(circularList *list){
+    list->start = NULL;
+    list->end = NULL;
+    list->size = 0;
+}
+
+void insertOnCircular(circularList *list, process* newProcess){
+    process *aux = list->start;
+    if (aux == NULL){
+        list->start = newProcess;
+        list->end = newProcess;
+        newProcess->next = NULL;
+    } else { 
+        list->end->next = newProcess;
+        list->end = newProcess;
+        newProcess->next = NULL;
+    }
+}
+
+process* removeFromCircular(circularList *list){
+    process *aux = list->start;
+    if (aux != NULL){
+        list->start = aux->next;
+    }
+    list->size--;
+    return aux;
 }
