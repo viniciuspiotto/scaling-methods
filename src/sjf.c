@@ -1,9 +1,8 @@
-#include "list.h"
+#include <stdlib.h>
 #include "process.h"
 #include "chance.h"
-#include <stdlib.h>
-
-
+#include "list.h"
+#include "sjf.h"
 
 void shortestJobFirst(){
     list processList;  
