@@ -27,11 +27,11 @@ No início do programa, o usuário deve escolher qual método de escalonamento s
 
 ## Tarefas a serem realizadas:
 
-- [ ] Definir e implementar as estruturas de dados (pilha, fila, lista) com alocação dinâmica.
-- [ ] Implementar a lógica para a criação de processos com tamanhos aleatórios.
-- [ ] Desenvolver a lógica de escalonamento para cada método (FCFS, SJF, Round-Robin).
-- [ ] Implementar o loop principal do programa, representando as iterações do sistema.
-- [ ] Testar o programa com diferentes cenários.
+- [x] Definir e implementar as estruturas de dados (pilha, fila, lista) com alocação dinâmica.
+- [x] Implementar a lógica para a criação de processos com tamanhos aleatórios.
+- [x] Desenvolver a lógica de escalonamento para cada método (FCFS, SJF, Round-Robin).
+- [x] Implementar o loop principal do programa, representando as iterações do sistema.
+- [x] Testar o programa com diferentes cenários.
 
 ## Como executar
 
