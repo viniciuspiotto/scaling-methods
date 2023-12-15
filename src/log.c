@@ -43,7 +43,7 @@ void logFinishProcess(FILE *file, process* currentProcess) {
 
 void logChangeProcess(FILE *file, process* newProcess, process* oldProcess) {
     char logMessageBuffer[100];
-    snprintf(logMessageBuffer, sizeof(logMessageBuffer), " [CHANGE] %-5sPID: %-7d | time: %-2d -> PID: %-7d | time: %-2d\n", "", oldProcess->pid, oldProcess->time, newProcess->pid, newProcess->time);
+    snprintf(logMessageBuffer, sizeof(logMessageBuffer), " [CHANGE] %-5sPID: %-7d | time: %-2d ->  PID: %-7d | time: %-2d\n", "", oldProcess->pid, oldProcess->time, newProcess->pid, newProcess->time);
     printf("%s", logMessageBuffer);
     logMessage(file, logMessageBuffer);
 }
