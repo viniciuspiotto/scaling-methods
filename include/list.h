@@ -22,4 +22,4 @@ void initCircular(circularList *list);
 void insertOnCircular(circularList *list, process* newprocess);
 process* removeFromCircular(circularList *list);
 
-#endif // LIST_H_
+#endif

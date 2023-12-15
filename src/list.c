@@ -2,28 +2,44 @@
 #include "process.h"
 #include <stdlib.h>
 
-void initList(list* newList) {
-    newList->begin = NULL;
-    newList->size = 0;
+/**
+ * Function that initializes the process list.
+ * @param list processList
+ */
+void initList(list* processList) {
+    processList->begin = NULL;
+    processList->size = 0;
 }
 
-void insertOnList(process *newProcess, list *l){
-    if(l->begin == NULL || l->begin->time >= newProcess->time){
-        newProcess->next = l->begin;
-        l->begin = newProcess;
-    }else{
-        process *aux = l->begin;
-        while(aux->next != NULL && aux->next->time < newProcess->time){
+/**
+ * Function that inserts a new process on the process list.
+ * @param   process   newProcess
+ * @param   list      processList
+ */
+void insertOnList(process *newProcess, list *processList) {
+    if(processList->begin == NULL || processList->begin->time >= newProcess->time) {
+        newProcess->next = processList->begin;
+        processList->begin = newProcess;
+    } else {
+        process *aux = processList->begin;
+        while(aux->next != NULL && aux->next->time < newProcess->time) {
             aux = aux->next;
         }
         newProcess->next = aux->next;
         aux->next = newProcess;
     }
-    l->size++;
+    processList->size++;
 }
 
-process* removeFromList(list* list, int pid) {
-    process* aux = list->begin;
+/**
+ * Function that removes a process from the process list by the PID.
+ * @param   list    processList
+ * @param   int     pid
+ *
+ * @return process
+ */
+process* removeFromList(list* processList, int pid) {
+    process* aux = processList->begin;
     process* prev = NULL;
     while (aux != NULL && aux->pid != pid) {
         prev = aux;
@@ -33,46 +49,65 @@ process* removeFromList(list* list, int pid) {
         return NULL;
     }
     if (prev == NULL) {
-        list->begin = aux->next;
+        processList->begin = aux->next;
     } else {
         prev->next = aux->next;
     }
-    list->size--;
+    processList->size--;
     return aux;
 }
 
-void freeList(list* list) {
-    process* aux = list->begin;
+/**
+ * Function that remove all the process and free them.
+ * @param list processList
+ */
+void freeList(list* processList) {
+    process* aux = processList->begin;
     while (aux != NULL) {
         process* next = aux->next;
         free(aux);
         aux = next;
     }
-    free(list);
+    free(processList);
 }
 
-void initCircular(circularList *list){
-    list->start = NULL;
-    list->end = NULL;
-    list->size = 0;
+/**
+ * Function that initializes the circular process list.
+ * @param circularList processList
+ */
+void initCircular(circularList *processList) {
+    processList->start = NULL;
+    processList->end = NULL;
+    processList->size = 0;
 }
 
-void insertOnCircular(circularList *list, process* newProcess){
-    process *aux = list->start;
-    if (aux == NULL){
-        list->start = newProcess;
-        list->end = newProcess;
+/**
+ * Function that inserts a new process on the circular process list.
+ * @param   circularList    processList
+ * @param   process         newProcess
+ */
+void insertOnCircular(circularList *processList, process* newProcess) {
+    process *aux = processList->start;
+    if (aux == NULL) {
+        processList->start = newProcess;
+        processList->end = newProcess;
     } else { 
-        list->end->next = newProcess;
-        list->end = newProcess;
+        processList->end->next = newProcess;
+        processList->end = newProcess;
     }
 }
 
-process* removeFromCircular(circularList *list){
-    process *aux = list->start;
-    if (aux != NULL){
-        list->start = aux->next;
+/**
+ * Function that removes a process from the circular process list.
+ * @param circularList processList
+ *
+ * @return process
+ */
+process* removeFromCircular(circularList *processList) {
+    process *aux = processList->start;
+    if (aux != NULL) {
+        processList->start = aux->next;
     }
-    list->size--;
+    processList->size--;
     return aux;
 }

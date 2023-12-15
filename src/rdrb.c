@@ -1,41 +1,47 @@
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
+#include "rdrb.h"
 #include "process.h"
 #include "list.h"
-#include "rdrb.h"
-#include "log.h"
 #include "chance.h"
+#include "log.h"
 
-void roundRobin(FILE* file){
-    logMessage(file, " [METHOD] Método Round Robin iniciado.\n");
-    printf(" [METHOD] Método Round Robin iniciado.\n");
+/**
+ * Function that implements the Round Robin method.
+ * @param FILE logFile
+ */
+void roundRobin(FILE* logFile) {
+    logMessage(logFile, " [METHOD] Método Round Robin iniciado.\n");
     int clock = 0, quantum = 6; 
+    // Initializing the processList
     circularList processList;
     initCircular(&processList);
 
     do {
+        // Checking and creating a new process
         if(randomChance(0, 100) <= 30) {
             process *newProcess = createProcess();
             insertOnCircular(&processList, newProcess);
             processList.size++;
-            logCreateProcess(file, newProcess, processList.size);
+            logCreateProcess(logFile, newProcess, processList.size);
         }
-
-        if(processList.size > 0){
+        // Executing the process itself
+        if(processList.size > 0) {
             clock++;
-            logExecuteProcess(file, processList.start);
-            processList.start->time --;
-            if(processList.start->time == 0){
+            logExecuteProcess(logFile, processList.start);
+            processList.start->time --; // Decrementing process time
+            if(processList.start->time == 0) { // Checking if the process is over
                 process* removedProcess = removeFromCircular(&processList);
                 clock = 0;
-                logFinishProcess(file, removedProcess);
+                logFinishProcess(logFile, removedProcess);
             }
-            
-            if(clock >= quantum){
+            // If the process time is greater than the quantum,
+            //  then swap to the next process.
+            if(clock >= quantum) {
                 insertOnCircular(&processList, processList.start);
                 processList.start = processList.start->next;
                 clock = 0;
-                logChangeProcess(file, processList.start, processList.end);
+                logChangeProcess(logFile, processList.start, processList.end);
             }
         }
         sleep(1);

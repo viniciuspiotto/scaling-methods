@@ -1,13 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void failedChoice(){
+/**
+ * Function that prints error after an invalid option has been choosen.
+ */
+void failedChoice() {
     printf("*--------------------------------------*\n");
     printf("|            Opção inválida            |\n");
     printf("*--------------------------------------*\n\n\n");
 }
 
-int choiceMethod(){
+/**
+ * Function that collects the method desired by the user.
+ *
+ * @return int
+ */
+int choiceMethod() {
     int choice;
     printf("Escolha um método: \n\n");
     printf("1. First Come First Serve\n");
@@ -18,10 +26,14 @@ int choiceMethod(){
     return choice;
 }
 
-void cleanTerminal(){
+/**
+ * Function that clears the terminal.
+ *  It uses the _WIN32 macro to determine the OS type.
+ */
+void cleanTerminal() {
     #ifdef _WIN32
-        system("cls");
+        system("cls"); // Windows
     #else
-        system("clear");
+        system("clear"); // *nix
     #endif
 }

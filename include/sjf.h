@@ -2,6 +2,6 @@
 #define SJB_H
 #include <stdio.h>
 
-void shortestJobFirst(FILE* file);
+void shortestJobFirst(FILE* logFile);
 
 #endif

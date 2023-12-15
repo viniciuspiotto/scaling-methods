@@ -1,19 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "interface.h"
 #include "fcfs.h"
 #include "sjf.h"
 #include "rdrb.h"
 #include "log.h"
+#include "interface.h"
 
-int main(){
-    srand(time(0));
+/**
+ * Main function that brings together all main files and functions
+ */
+int main() {
+    srand(time(0)); // Setting the seed for the random numbers
     cleanTerminal();
     char fileName[50];
+    // Creating the log filename
     sprintf(fileName, "relatorio-%d.txt", (int)time(NULL));
-    FILE* file = fopen(fileName, "w");
-    if(file == NULL){
+    // Opening the log file
+    FILE* logFile = fopen(fileName, "w");
+    if(logFile == NULL){
         printf("Erro ao criar arquivo de relatório.\n");
         exit(1);
     }
@@ -21,21 +26,21 @@ int main(){
     int choice = 0;
     do {
         choice = choiceMethod();
-        switch(choice){
-            case 1:
+        switch(choice) {
+            case 1: // First Come First Served
                 cleanTerminal();
-                logMessageFileName(file, fileName);
-                firstComeFirstServed(file);
+                logMessageFileName(logFile, fileName);
+                firstComeFirstServed(logFile);
                 break;
-            case 2:
+            case 2: // Shortest Job First
                 cleanTerminal();
-                logMessageFileName(file, fileName);
-                shortestJobFirst(file);
+                logMessageFileName(logFile, fileName);
+                shortestJobFirst(logFile);
                 break;
-            case 3:
+            case 3: // Round Robin
                 cleanTerminal();
-                logMessageFileName(file, fileName);
-                roundRobin(file);
+                logMessageFileName(logFile, fileName);
+                roundRobin(logFile);
                 break;
             default:
                 cleanTerminal();
@@ -43,5 +48,5 @@ int main(){
                 break;
         }
     } while(choice > 3 || choice < 1);
-    fclose(file);
+    fclose(logFile);
 }

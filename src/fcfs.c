@@ -1,28 +1,36 @@
 #include <unistd.h>
+#include <stdio.h>
 #include "fcfs.h"
 #include "process.h"
 #include "queue.h"
 #include "chance.h"
 #include "log.h"
 
-void firstComeFirstServed(FILE* file) {
-    logMessage(file, " [METHOD] Método First Come First Served iniciado.\n");
-    printf(" [METHOD] Método First Come First Served iniciado.\n");
+/**
+ * Function that implements the First Come First Served method.
+ * @param FILE logFile
+ */
+void firstComeFirstServed(FILE* logFile) {
+    logMessage(logFile, " [METHOD] Método First Come First Served iniciado.\n");
+    // Initializing the processQueue
     queue processQueue;
     initQueue(&processQueue);
 
     do {
+        // Checking and creating a new process
         if(randomChance(0, 100) <= 30) {
             process *newProcess = createProcess();
             enqueue(newProcess, &processQueue);
-            logCreateProcess(file, newProcess, processQueue.size);
+            logCreateProcess(logFile, newProcess, processQueue.size);
         }
+        // Executing the process itself
         if(processQueue.size > 0) {
-            logExecuteProcess(file, processQueue.start);
-            processQueue.start->time--;
+            logExecuteProcess(logFile, processQueue.start);
+            processQueue.start->time--; // Decrementing process time
+            // Checking if the process is over
             if(processQueue.start->time == 0) {
                 process* removedProcess = dequeue(&processQueue);
-                logFinishProcess(file, removedProcess);
+                logFinishProcess(logFile, removedProcess);
             }
         }
         sleep(1);
