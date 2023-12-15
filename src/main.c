@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "interface.h"
 #include "fcfs.h"
 #include "sjf.h"
+#include "rdrb.h"
+#include "log.h"
 
 int main(){
     srand(time(0));

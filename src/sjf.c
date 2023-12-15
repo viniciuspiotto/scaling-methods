@@ -1,8 +1,9 @@
+#include <unistd.h>
 #include "list.h"
 #include "process.h"
 #include "chance.h"
+#include "sjf.h"
 #include "log.h"
-#include <stdlib.h>
 
 void shortestJobFirst(FILE *file) {
     logMessage(file, " [METHOD] Método Shortest Job First iniciado.\n");

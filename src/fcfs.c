@@ -1,3 +1,5 @@
+#include <unistd.h>
+#include "fcfs.h"
 #include "process.h"
 #include "queue.h"
 #include "chance.h"
