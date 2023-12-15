@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
 #include "process.h"
 #include "list.h"
 #include "rdrb.h"
+#include "log.h"
 #include "chance.h"
 
 void roundRobin(FILE* file){
@@ -12,8 +13,7 @@ void roundRobin(FILE* file){
     circularList processList;
     initCircular(&processList);
 
-    while (1){
-        sleep(1);
+    do {
         if(randomChance(0, 100) <= 30) {
             process *newProcess = createProcess();
             insertOnCircular(&processList, newProcess);
@@ -38,5 +38,6 @@ void roundRobin(FILE* file){
                 logChangeProcess(file, processList.start, processList.end);
             }
         }
-    }
+        sleep(1);
+    } while (1);
 }
