@@ -62,11 +62,9 @@ void insertOnCircular(circularList *list, process* newProcess){
     if (aux == NULL){
         list->start = newProcess;
         list->end = newProcess;
-        newProcess->next = NULL;
     } else { 
         list->end->next = newProcess;
         list->end = newProcess;
-        newProcess->next = NULL;
     }
 }
 
