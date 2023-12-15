@@ -2,6 +2,11 @@
 
 ## Colaboradores
 
+- [0xbhsu](https://github.com/0xbhsu)
+- [viniciuspiotto](https://github.com/viniciuspiotto)
+- [GrodriguesZR](https://github.com/GrodriguesZR)
+- [LeonardoIX](https://github.com/LeonardoIX)
+
 ## Descrição
 
 No início do programa, o usuário deve escolher qual método de escalonamento será utilizado (FCFS, SJF ou Round-Robin). O programa deve utilizar as estruturas de dados pilha, fila e lista (por alocação dinâmica) para armazenar os processos conforme o método de escalonamento escolhido. 
