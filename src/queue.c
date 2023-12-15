@@ -20,8 +20,14 @@ void enqueue(process *newProcess, queue *processQueue) {
 }
 
 process* dequeue(queue *processQueue) {
-    process *aux = processQueue->start;
-    processQueue->start = aux->next;
+    process *aux = NULL;
+    if(processQueue->start != NULL) {
+        aux = processQueue->start;
+        processQueue->start = processQueue->start->next;
+        if(processQueue->start == NULL) {
+            processQueue->end = NULL;
+        }
+    }
     processQueue->size--;
     return aux;
 }
